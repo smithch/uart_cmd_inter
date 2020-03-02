@@ -13,7 +13,8 @@ module uart_cmd_inter (
     output [2:0] oCmd
 );
     reg [7:0] cmd_buff [3:0];  
-    wire dv; 
+    wire dv;
+    wire [7:0] rxByte; 
 
     uart_rx rx(.i_Clock(), 
                .i_Rx_Serial(),
