@@ -8,8 +8,10 @@ add wave dut.dv
 add wave dut.rxByte
 add wave dut.rx.o_Rx_Byte
 add wave tx.r_SM_Main
+add wave tx.r_Tx_Data
 add wave dut.rx.r_SM_Main
 add wave tx.r_Clock_Count
 add wave tx.o_Tx_Serial
 add wave dut.cmd_buff
+add wave dut.strobe
 run -All
