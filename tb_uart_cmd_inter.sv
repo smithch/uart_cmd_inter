@@ -74,6 +74,7 @@ module tb_uart_cmd_inter ();
         @(posedge tx_done);
 
         #1000 cmd_clear = 'b1;
+        #40000 cmd_clear = 'b0;
 
     end
 

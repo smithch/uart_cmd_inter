@@ -35,12 +35,12 @@ module uart_cmd_inter (
             cmd_buff[3] <= cmd_buff[2]; 
             cmd_buff[2] <= cmd_buff[1]; 
             cmd_buff[1] <= cmd_buff[0]; 
-            cmd_buff[0] <= rxByte;  
-            //strobe <= 'b0; 
-            //cmd_strobe <= 'b0;   
+            cmd_buff[0] <= rxByte;     
         end
+        else begin
             if(cmd_buff[3] == 'h21) begin 
-                 cmd_set <= (cmd_clear) ? 'b0 : 'b1; 
+                 cmd_set <= (cmd_clear) ? 'b0 : 'b1;
+                cmd_buff[3] <= (cmd_clear) ? 'b0 : cmd_buff[3];
                 if(cmd_buff[2] == 'h4D)   //M for mgu
                     mgu_cmd <= {cmd_buff[1] - 'd30, cmd_buff[0] - 'd30};
                 else if(cmd_buff[2] == 'h47) //G for gnu
@@ -50,6 +50,7 @@ module uart_cmd_inter (
                     gnu_cmd <= {cmd_buff[1] - 'd30, cmd_buff[0] - 'd30};
                 end
             end
+        end
     end
 endmodule 
 
